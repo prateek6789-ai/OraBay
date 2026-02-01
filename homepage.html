@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OraBAY</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        header {
+            background-color: #000000;
+            padding: 20px;
+            border-bottom: 3px solid #ff6600;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6600;
+        }
+
+        .search-box {
+            flex: 1;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+
+        .header-links a:hover {
+            color: #ff6600;
+        }
+
+        nav {
+            background-color: #2a2a2a;
+            padding: 15px 0;
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background-color: #ff6600;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+            padding: 40px 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .banner h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #ff6600;
+            margin: 30px 0 20px 0;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #3a3a3a;
+        }
+
+        .product-card:hover {
+            border-color: #ff6600;
+            transform: translateY(-5px);
+            transition: all 0.3s;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #1a1a1a;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 22px;
+            color: #ff6600;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-bids {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .order-button {
+            flex: 1;
+            padding: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-button:hover {
+            background-color: #ff8800;
+        }
+
+        .cart-button {
+            padding: 10px 15px;
+            background-color: #2a2a2a;
+            color: #ff6600;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .cart-button:hover {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        footer {
+            background-color: #000000;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 3px solid #ff6600;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #ff6600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #aaa;
+        }
+
+        /* for tablets */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-box {
+                margin: 0;
+                width: 100%;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .banner h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* for phone*/
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 22px;
+            }
+
+            .header-links {
+                display: flex;
+                gap: 10px;
+            }
+
+            .header-links a {
+                margin-left: 0;
+                font-size: 14px;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .banner h1 {
+                font-size: 20px;
+            }
+
+            .banner p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">OraBAY</div>
+            <div class="search-box">
+                <input type="text" placeholder="Search for anything...">
+            </div>
+            <div class="header-links">
+                <a href="login.html">Login</a>
+                <a href="#">Cart</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">Electronics</a>
+            <a href="fashion.html">Fashion</a>
+            <a href="#">Sports</a>
+            <a href="books.html">Books</a>
+            <a href="#">Deals</a>
+        </div>
+    </nav>
+
+    <div class="banner">
+        <h1>Big Sale - Up to 70% Off!</h1>
+        <p>Shop the best deals on electronics, fashion, and more</p>
+    </div>
+
+    <!--Contentttt-->
+    <div class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+            <!--product1-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQFuquZp2BEjbIIcx59aEva-oURzKKPXQc_QFAf0Az4ZBOF4jRVGMjvZhxc30K8DOh1QnOQQccvaMJPiD_EVGxOgms4ue52NQ" alt="Laptop" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">ASUS TUF Gaming Laptop</div>
+                    <div class="product-price">₹70,990</div>
+                    <div class="product-bids">only few left · 2h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product2-->
+            <div class="product-card">
+                <img src="https://www.myimaginestore.com/media/catalog/product/cache/4a48ac28cbb6e9c41470e5be5a6d3043/i/p/iphone_17_pro_cosmic_orange_pdp_image_position_1__en-in_1.jpg" alt="Phone" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">iPhone 17 Pro</div>
+                    <div class="product-price">₹1,34,900</div>
+                    <div class="product-bids">only 3 left · 5h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product3-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSOvIUocBUD7jA5QfHQba1pQiPZMVVZ-Oe05GybdzA7vHrslc2VKSrWK6pn8qwgE5AaWKrx5dLGb2jibwjuz-TLOFBfS8S-yZrSohvzA_1o5vsF3rZWyZcxPqQRuUvISisIETjzZXzUpQ&usqp=CAc" alt="Shoes" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Nike Air Jordan 1 Low Men Shoes</div>
+                    <div class="product-price">₹12,999</div>
+                    <div class="product-bids">only 1 left · 1h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product4-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRJbKV_pNnQQRFmLvTMj5pJp_fIYMnBCalw_OBgkGA-uqmQfv_y9g4vseAAD95iEkqYEhWf1XMSuz3EZLiqvQGyNe-xDqnLa9EuShvAQtpgnBEeXQrA-nQ01Kc" alt="Camera" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Nikon D7500 DSLR Camera</div>
+                    <div class="product-price">₹78,999</div>
+                    <div class="product-bids">in stock · 3h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product5-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT1kNGtah11IATpMQqXBXtsrH-jtYKkh6_ByOrZOPCQkO8Ctj92WHXFQq_rFeVrmPdZ7-H34PNl9z-TrT6_e783SMs3t9GYjEsfvHbHZHTtIOY5cXbHZvdx&usqp=CAc" alt="Headphones" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">GoBoult Thunder Mustang Headphones</div>
+                    <div class="product-price">₹2,999</div>
+                    <div class="product-bids">only 2 left · 4h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+            <!--product6-->
+            <div class="product-card">
+                <img src="https://www.bharattimestyle.com/cdn/shop/files/FS5304_main_1024x1024.webp?v=1722317763" alt="Watch" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Fossil Analog Blue Dial Men's Watch</div>
+                    <div class="product-price">₹5,999</div>
+                    <div class="product-bids">only few left · 6h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product7-->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop" alt="Sunglasses" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Ray-Ban Wayfarer Square Ai Glasses</div>
+                    <div class="product-price">₹6,599</div>
+                    <div class="product-bids">in stock · 2h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product8-->
+            <div class="product-card">
+                <img src="https://cdn.luxe.digital/media/20230918110303/best-travel-backpack-rimowa-never-still-large-review-luxe-digital-1-780x520.jpg" alt="Backpack" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Travel Backpack</div>
+                    <div class="product-price">₹7,499</div>
+                    <div class="product-bids">only 4 left · 7h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Electronics</h2>
+        <div class="products-grid">
+
+            <!--product9-->
+            <div class="product-card">
+                <img src="https://images-cdn.ubuy.co.in/6505947a5ae41273996518b6-2021-apple-11-inch-ipad-pro-wi-fi-2tb.jpg" alt="Tablet" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">iPad Pro</div>
+                    <div class="product-price">₹69,990</div>
+                    <div class="product-bids">in stock · 3h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product10-->
+            <div class="product-card">
+                <img src="https://images.macrumors.com/t/kq3GdmuKQvvgItx8sLrgOKQu59o=/800x0/smart/article-new/2025/09/airpods-pro-3-blue.jpeg?lossy" alt="Earbuds" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">AirPods Pro</div>
+                    <div class="product-price">₹15,999</div>
+                    <div class="product-bids">only few left · 1h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product11-->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=300&fit=crop" alt="Gaming Console" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">PlayStation 5</div>
+                    <div class="product-price">₹49,999</div>
+                    <div class="product-bids">in stock · 8h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product12-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkYSOXAFY6AodHVuApGW43x16RKX7yFKpdsQ&s" alt="Smart Speaker" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Amazon Echo</div>
+                    <div class="product-price">₹6,999</div>
+                    <div class="product-bids">only 1 left · 12h left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About</h3>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <a href="#">Customer Service</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 OraBAY. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

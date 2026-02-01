@@ -1,0 +1,12 @@
+.DS_Store
+*.mov
+*.mp4
+*.png
+*.jpg
+*.jpeg
+node_modules/
+netflix-clone/
+git-lab/
+fork-pr-activity/
+.vscode/
+.env

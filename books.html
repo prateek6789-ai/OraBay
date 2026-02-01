@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books - OraBAY</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        header {
+            background-color: #000000;
+            padding: 20px;
+            border-bottom: 3px solid #ff6600;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex: 1;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+
+        .header-links a:hover {
+            color: #ff6600;
+        }
+
+        nav {
+            background-color: #2a2a2a;
+            padding: 15px 0;
+        }
+
+        .nav-menu {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background-color: #ff6600;
+        }
+
+        .nav-menu a.active {
+            background-color: #ff6600;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #ff6600 0%, #ff8800 100%);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .category-card {
+            background-color: #2a2a2a;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid #3a3a3a;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            border-color: #ff6600;
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .category-name {
+            font-size: 18px;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #ff6600;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #3a3a3a;
+        }
+
+        .product-card:hover {
+            border-color: #ff6600;
+            transform: translateY(-5px);
+            transition: all 0.3s;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background-color: #1a1a1a;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            margin-bottom: 8px;
+            height: 45px;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .author {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            color: #ff6600;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            font-size: 14px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .product-bids {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .order-button {
+            flex: 1;
+            padding: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-button:hover {
+            background-color: #ff8800;
+        }
+
+        .cart-button {
+            padding: 10px 15px;
+            background-color: #2a2a2a;
+            color: #ff6600;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .cart-button:hover {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        footer {
+            background-color: #000000;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 3px solid #ff6600;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #ff6600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #3a3a3a;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-box {
+                margin: 0;
+                width: 100%;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories {
+                grid-template-columns: 1fr; 
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="homepage.html" class="logo">OraBAY</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search for books, authors...">
+            </div>
+            <div class="header-links">
+                <a href="login.html">Login</a>
+                <a href="#">Cart</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-menu">
+            <a href="homepage.html">Home</a>
+            <a href="#">Electronics</a>
+            <a href="fashion.html">Fashion</a>
+            <a href="#">Sports</a>
+            <a href="books.html" class="active">Books</a>
+            <a href="#">Deals</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>📚 Books Store</h1>
+        <p>Explore thousands of books across all genres</p>
+    </div>
+
+    <!--Contenttt-->
+    <div class="container">
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-icon">📖</div>
+                <div class="category-name">Fiction</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🔬</div>
+                <div class="category-name">Science</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💼</div>
+                <div class="category-name">Business</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🎨</div>
+                <div class="category-name">Arts & Culture</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">🏆 Best Sellers</h2>
+        <div class="products-grid">
+
+            <!--product1-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSkJ1PtjbzIqfIkVIgO5K5Vwo6zfigFCd89fe14v9bvRBuxvaOTayfDjP1zLP3jL3L-VYCwWDSfEC8GPFQZogQ8XkccgJXAWlW0sRYkDFK6tpA4sNsz81ufzlB_XoylnLKykgxtxsaxxg&usqp=CAc" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Mahabharata THE GREAT INDIAN EPIC</div>
+                    <div class="author">by Sudarshan Ray</div>
+                    <div class="rating">⭐⭐⭐⭐⭐ 4.8</div>
+                    <div class="product-price">₹299</div>
+                    <div class="product-bids">in stock</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product2-->
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1580503016l/50751225.jpg" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">The Sirens of MARS</div>
+                    <div class="author">by Sarah Stewart Johnson</div>
+                    <div class="rating">⭐⭐⭐⭐⭐ 4.9</div>
+                    <div class="product-price">₹499</div>
+                    <div class="product-bids">only few left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product3-->
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/81C8piIPa2L._UF1000,1000_QL80_.jpg" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">THE GOD OF SMALL THINGS</div>
+                    <div class="author">by Arundhati Roy</div>
+                    <div class="rating">⭐⭐⭐⭐ 4.6</div>
+                    <div class="product-price">₹199</div>
+                    <div class="product-bids">only 2 left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product4-->
+            <div class="product-card">
+                <img src="https://m.media-amazon.com/images/I/81bsw6fnUiL._UF1000,1000_QL80_.jpg" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">RICH DAD POOR DAD</div>
+                    <div class="author">by Robert Kiyosaki</div>
+                    <div class="rating">⭐⭐⭐⭐⭐ 4.7</div>
+                    <div class="product-price">₹149</div>
+                    <div class="product-bids">in stock</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product5-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRYA4MD4Zv9E25T8CCl4i4P0A7wDHckBibjw33AAMt3m8cZnenhGiSIFJGHjgJ3sDYrKle1oIxnZtaKtbR4-GSfEkOXjzq6BkhxU6yGURq74m_2cnbJWqy7kA" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">THE POWER OF YOUR SUBCONSCIOUS MIND</div>
+                    <div class="author">by Joseph Murphy</div>
+                    <div class="rating">⭐⭐⭐⭐⭐ 4.9</div>
+                    <div class="product-price">₹340</div>
+                    <div class="product-bids">only few left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product6-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSABrWO9pV48OdgBuoUx_7XXxTTvX4Q2U7i852uctGQIeSb22HyxxCedS55h9K8jUYG5rb8Ac7leab9XsuWDBADVPaVKgy0mPaRk6xAeQc1JSQIbPQ9og1l_bo" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">YOU CAN</div>
+                    <div class="author">by George Matthew Adams</div>
+                    <div class="rating">⭐⭐⭐⭐ 4.5</div>
+                    <div class="product-price">₹99</div>
+                    <div class="product-bids">in stock</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product7-->
+            <div class="product-card">
+                <img src="https://www.thezappybox.com/cdn/shop/files/atomic-habits_gallery_hi-res_01.jpg?v=1756984420&width=1080" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">Atomic Habits</div>
+                    <div class="author">by James Clear</div>
+                    <div class="rating">⭐⭐⭐⭐⭐ 4.9</div>
+                    <div class="product-price">₹189</div>
+                    <div class="product-bids">in stock</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--product8-->
+            <div class="product-card">
+                <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQrfBB2WmAf69VLhXVxEakzaWUiZ2MpVMP7OfF3VAEuhE5mNLB-rp2c9F2UdT4hPZk39dq8annsovzYi0noDIYtbL8Wc4LJSawXLiTqz8lCivU5peKNk1hd" alt="Book" class="product-image">
+                <div class="product-info">
+                    <div class="product-name">THE DIARY OF A YOUNG GIRL</div>
+                    <div class="author">by Anne Frank</div>
+                    <div class="rating">⭐⭐⭐⭐⭐ 4.9</div>
+                    <div class="product-price">₹235</div>
+                    <div class="product-bids">only few left</div>
+                    <div class="button-group">
+                        <button class="order-button">Order Now</button>
+                        <button class="cart-button">🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About</h3>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <a href="#">Customer Service</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 OraBAY. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
